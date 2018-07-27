@@ -8,8 +8,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WGBLedger.DAL;
+using WGBLedger.Models;
 
-namespace WGBLedger.Models
+namespace WGBLedger.Controllers
 {
     public class TransactionController : Controller
     {
@@ -47,11 +48,12 @@ namespace WGBLedger.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
                 transaction.Id = Guid.NewGuid();
+                transaction.Date = DateTime.UtcNow;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -80,7 +82,7 @@ namespace WGBLedger.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {

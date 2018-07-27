@@ -124,3 +124,6 @@ C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.A
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.GenerateResource.cache
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddTypeEnums.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.RenameAndRefactor.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddTransDesc.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.TransAmtDatatype.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.MergeIdContext.resources

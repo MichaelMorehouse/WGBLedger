@@ -17,5 +17,6 @@ namespace WGBLedger.Models
         public Guid Id { get; set; }
 
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
