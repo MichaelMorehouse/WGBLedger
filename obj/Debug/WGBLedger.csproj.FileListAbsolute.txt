@@ -127,3 +127,5 @@ C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.R
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddTransDesc.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.TransAmtDatatype.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.MergeIdContext.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddAcctBalance.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.ChangeToDateTimeOffset.resources

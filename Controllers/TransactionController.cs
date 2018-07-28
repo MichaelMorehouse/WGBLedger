@@ -17,8 +17,17 @@ namespace WGBLedger.Controllers
         private LedgerContext db = new LedgerContext();
 
         // GET: Transaction
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(Guid? acctId)
         {
+            if (acctId == null)
+            {
+                return RedirectToAction("Index","Home");//new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Transaction> acctTransactions = await db.Transactions.Where(x => x.BankAccount.Id == acctId).ToListAsync();
+            if (acctTransactions == null)
+            {
+                return HttpNotFound();
+            }
             return View(await db.Transactions.ToListAsync());
         }
 
@@ -38,8 +47,17 @@ namespace WGBLedger.Controllers
         }
 
         // GET: Transaction/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create(Guid? acctId)
         {
+            if (acctId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BankAccount bankAccount = await db.BankAccounts.FindAsync(acctId);
+            if (bankAccount == null)
+            {
+                return HttpNotFound();
+            }
             return View();
         }
 
@@ -48,15 +66,16 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction, Guid acctId)
         {
             if (ModelState.IsValid)
             {
+                transaction.BankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);
                 transaction.Id = Guid.NewGuid();
-                transaction.Date = DateTime.UtcNow;
+                transaction.Date = DateTimeOffset.Now;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Transaction",acctId);
             }
 
             return View(transaction);

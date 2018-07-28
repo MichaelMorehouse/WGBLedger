@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WGBLedger.DAL;
 using WGBLedger.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WGBLedger.Controllers
 {
@@ -19,7 +20,8 @@ namespace WGBLedger.Controllers
         // GET: BankAccount
         public async Task<ActionResult> Index()
         {
-            return View(await db.BankAccounts.ToListAsync());
+            string userId = HttpContext.User.Identity.GetUserId();
+            return View(await db.BankAccounts.Where(x => x.User.Id == userId).ToListAsync());
         }
 
         // GET: BankAccount/Details/5
@@ -48,12 +50,14 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Date,AccountNumber,AccountType")] BankAccount bankAccount)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,DateCreated,AccountNumber,AccountType")] BankAccount bankAccount)
         {
+            string userId = HttpContext.User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
+                bankAccount.User = await db.Users.SingleOrDefaultAsync(x => x.Id.ToString() == userId);
                 bankAccount.Id = Guid.NewGuid();
-                bankAccount.DateCreated = DateTime.UtcNow;
+                bankAccount.DateCreated = DateTimeOffset.Now;
                 db.BankAccounts.Add(bankAccount);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -82,7 +86,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Date,AccountNumber,AccountType")] BankAccount bankAccount)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,DateCreated,AccountNumber,AccountType")] BankAccount bankAccount)
         {
             if (ModelState.IsValid)
             {
