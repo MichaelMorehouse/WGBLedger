@@ -49,14 +49,19 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,DateCreated,AccountNumber,AccountType")] BankAccount bankAccount)
+        public async Task<ActionResult> Create([Bind(Include = "Name,AccountNumber,AccountType")] BankAccount bankAccount)
         {
             string userId = HttpContext.User.Identity.GetUserId();
+            // TODO Add verification message
+            // Prevent account creation with no logon
+            if (userId == null) return View();
+
             if (ModelState.IsValid)
             {
                 bankAccount.User = await db.Users.SingleOrDefaultAsync(x => x.Id.ToString() == userId);
                 bankAccount.Id = Guid.NewGuid();
                 bankAccount.DateCreated = DateTimeOffset.Now;
+                // TODO bankAccount.AccountNumber = GenerateAccountNumber();
                 db.BankAccounts.Add(bankAccount);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -85,7 +90,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,DateCreated,AccountNumber,AccountType")] BankAccount bankAccount)
+        public async Task<ActionResult> Edit([Bind(Include = "Name", Exclude = "DateCreated")] BankAccount bankAccount)
         {
             if (ModelState.IsValid)
             {
@@ -130,5 +135,13 @@ namespace WGBLedger.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #region Helper functions
+
+        public static void handleTransaction(Transaction transaction)
+        {
+        }
+
+        #endregion
     }
 }

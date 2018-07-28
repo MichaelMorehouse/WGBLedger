@@ -7,7 +7,7 @@ using WGBLedger.Models;
 
 namespace WGBLedger.Models
 {
-    public enum AccountType { Checking, Savings }
+    public enum AccountType { Checking=0, Savings=1 }
 
     public class BankAccount
     {
