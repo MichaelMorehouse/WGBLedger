@@ -1,1 +1,5 @@
-﻿App_Data
+﻿# Application Directories
+App_Data/
+
+# Project Files
+WGBLedger.csproj
