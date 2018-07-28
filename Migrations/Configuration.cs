@@ -5,14 +5,14 @@ namespace WGBLedger.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WGBLedger.DAL.LedgerContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WGBLedger.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(WGBLedger.DAL.LedgerContext context)
+        protected override void Seed(WGBLedger.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

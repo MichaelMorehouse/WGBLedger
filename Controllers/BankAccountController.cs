@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WGBLedger.DAL;
 using WGBLedger.Models;
 using Microsoft.AspNet.Identity;
 
@@ -15,7 +14,7 @@ namespace WGBLedger.Controllers
 {
     public class BankAccountController : Controller
     {
-        private LedgerContext db = new LedgerContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BankAccount
         public async Task<ActionResult> Index()

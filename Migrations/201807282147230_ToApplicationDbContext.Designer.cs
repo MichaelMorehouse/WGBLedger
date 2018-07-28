@@ -7,13 +7,13 @@ namespace WGBLedger.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddTypeEnums : IMigrationMetadata
+    public sealed partial class ToApplicationDbContext : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTypeEnums));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ToApplicationDbContext));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807270216012_AddTypeEnums"; }
+            get { return "201807282147230_ToApplicationDbContext"; }
         }
         
         string IMigrationMetadata.Source

@@ -120,12 +120,5 @@ C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.CoreC
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.CopyComplete
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.dll
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.pdb
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddContext.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.ToApplicationDbContext.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.GenerateResource.cache
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddTypeEnums.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.RenameAndRefactor.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddTransDesc.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.TransAmtDatatype.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.MergeIdContext.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddAcctBalance.resources
-C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.ChangeToDateTimeOffset.resources

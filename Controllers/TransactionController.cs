@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WGBLedger.DAL;
 using WGBLedger.Models;
 
 namespace WGBLedger.Controllers
 {
     public class TransactionController : Controller
     {
-        private LedgerContext db = new LedgerContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transaction
         public async Task<ActionResult> Index(Guid? acctId)

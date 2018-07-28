@@ -200,41 +200,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
-    <Compile Include="DAL\LedgerContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807270143047_AddContext.cs" />
-    <Compile Include="Migrations\201807270143047_AddContext.Designer.cs">
-      <DependentUpon>201807270143047_AddContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807270216012_AddTypeEnums.cs" />
-    <Compile Include="Migrations\201807270216012_AddTypeEnums.Designer.cs">
-      <DependentUpon>201807270216012_AddTypeEnums.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807270234438_RenameAndRefactor.cs" />
-    <Compile Include="Migrations\201807270234438_RenameAndRefactor.Designer.cs">
-      <DependentUpon>201807270234438_RenameAndRefactor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807271954097_AddTransDesc.cs" />
-    <Compile Include="Migrations\201807271954097_AddTransDesc.Designer.cs">
-      <DependentUpon>201807271954097_AddTransDesc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807272127041_TransAmtDatatype.cs" />
-    <Compile Include="Migrations\201807272127041_TransAmtDatatype.Designer.cs">
-      <DependentUpon>201807272127041_TransAmtDatatype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807272202591_MergeIdContext.cs" />
-    <Compile Include="Migrations\201807272202591_MergeIdContext.Designer.cs">
-      <DependentUpon>201807272202591_MergeIdContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807280031125_AddAcctBalance.cs" />
-    <Compile Include="Migrations\201807280031125_AddAcctBalance.Designer.cs">
-      <DependentUpon>201807280031125_AddAcctBalance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807280039398_ChangeToDateTimeOffset.cs" />
-    <Compile Include="Migrations\201807280039398_ChangeToDateTimeOffset.Designer.cs">
-      <DependentUpon>201807280039398_ChangeToDateTimeOffset.cs</DependentUpon>
+    <Compile Include="Migrations\201807282147230_ToApplicationDbContext.cs" />
+    <Compile Include="Migrations\201807282147230_ToApplicationDbContext.Designer.cs">
+      <DependentUpon>201807282147230_ToApplicationDbContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -336,29 +307,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807270143047_AddContext.resx">
-      <DependentUpon>201807270143047_AddContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807270216012_AddTypeEnums.resx">
-      <DependentUpon>201807270216012_AddTypeEnums.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807270234438_RenameAndRefactor.resx">
-      <DependentUpon>201807270234438_RenameAndRefactor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807271954097_AddTransDesc.resx">
-      <DependentUpon>201807271954097_AddTransDesc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807272127041_TransAmtDatatype.resx">
-      <DependentUpon>201807272127041_TransAmtDatatype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807272202591_MergeIdContext.resx">
-      <DependentUpon>201807272202591_MergeIdContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807280031125_AddAcctBalance.resx">
-      <DependentUpon>201807280031125_AddAcctBalance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807280039398_ChangeToDateTimeOffset.resx">
-      <DependentUpon>201807280039398_ChangeToDateTimeOffset.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807282147230_ToApplicationDbContext.resx">
+      <DependentUpon>201807282147230_ToApplicationDbContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

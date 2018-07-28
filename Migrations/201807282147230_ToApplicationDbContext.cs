@@ -3,10 +3,42 @@ namespace WGBLedger.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MergeIdContext : DbMigration
+    public partial class ToApplicationDbContext : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.BankAccounts",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Name = c.String(),
+                        DateCreated = c.DateTimeOffset(nullable: false, precision: 7),
+                        AccountNumber = c.Int(nullable: false),
+                        AccountType = c.Int(nullable: false),
+                        Balance = c.Double(nullable: false),
+                        User_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .Index(t => t.User_Id);
+            
+            CreateTable(
+                "dbo.Transactions",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        Amount = c.Double(nullable: false),
+                        Description = c.String(),
+                        Date = c.DateTimeOffset(nullable: false, precision: 7),
+                        TransactionType = c.Int(nullable: false),
+                        TransactionMethod = c.Int(nullable: false),
+                        BankAccount_Id = c.Guid(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.BankAccounts", t => t.BankAccount_Id)
+                .Index(t => t.BankAccount_Id);
+            
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
@@ -75,9 +107,6 @@ namespace WGBLedger.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
-            AddColumn("dbo.BankAccounts", "User_Id", c => c.String(maxLength: 128));
-            CreateIndex("dbo.BankAccounts", "User_Id");
-            AddForeignKey("dbo.BankAccounts", "User_Id", "dbo.AspNetUsers", "Id");
         }
         
         public override void Down()
@@ -87,19 +116,22 @@ namespace WGBLedger.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Transactions", "BankAccount_Id", "dbo.BankAccounts");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Transactions", new[] { "BankAccount_Id" });
             DropIndex("dbo.BankAccounts", new[] { "User_Id" });
-            DropColumn("dbo.BankAccounts", "User_Id");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Transactions");
+            DropTable("dbo.BankAccounts");
         }
     }
 }
