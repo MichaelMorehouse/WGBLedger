@@ -6,8 +6,8 @@ using System.Web;
 
 namespace WGBLedger.Models
 {
-    public enum TransactionType { Deposit, Withdrawal }
-    public enum TransactionMethod { Cash, Check }
+    public enum TransactionType { Withdrawal=0, Deposit=1 }
+    public enum TransactionMethod { Cash=0, Check=1 }
 
     public class Transaction
     {

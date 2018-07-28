@@ -65,7 +65,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction, Guid acctId)
+        public async Task<ActionResult> Create([Bind(Include = "Amount,Description,TransactionType,TransactionMethod")] Transaction transaction, Guid acctId)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace WGBLedger.Controllers
                 transaction.Date = DateTimeOffset.Now;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index","Transaction",acctId);
+                return RedirectToAction("Index","Transaction", new { acctId });
             }
 
             return View(transaction);

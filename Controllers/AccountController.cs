@@ -449,7 +449,7 @@ namespace WGBLedger.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "BankAccount");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
