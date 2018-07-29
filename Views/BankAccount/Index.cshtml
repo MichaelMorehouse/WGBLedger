@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Balance)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AccountNumber)
+            @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AccountType)
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Balance)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AccountNumber)
+            @Html.DisplayFor(modelItem => item.Id).ToString().Substring(0,7)<span>-...</span>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AccountType)
