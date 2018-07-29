@@ -18,7 +18,7 @@ namespace WGBLedger.Models
         public DateTimeOffset Date { get; set; }
         [Display(Name="Transaction Type")]
         public TransactionType TransactionType { get; set; }
-        [Display(Name = "Method")]
+        [Display(Name="Method")]
         public TransactionMethod TransactionMethod { get; set; }
         public Guid Id { get; set; }
 
