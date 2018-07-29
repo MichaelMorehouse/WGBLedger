@@ -20,6 +20,9 @@ namespace WGBLedger.Models
         public TransactionType TransactionType { get; set; }
         [Display(Name="Method")]
         public TransactionMethod TransactionMethod { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
+        [DataType(DataType.Currency)]
+        public double PreviousBalance { get; set; }
         public Guid Id { get; set; }
 
         [Display(Name="Bank Account")]

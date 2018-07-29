@@ -49,7 +49,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name,AccountNumber,AccountType")] BankAccount bankAccount)
+        public async Task<ActionResult> Create([Bind(Include = "Name,AccountType")] BankAccount bankAccount)
         {
             string userId = HttpContext.User.Identity.GetUserId();
             // TODO Add verification message

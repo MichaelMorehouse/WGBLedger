@@ -212,12 +212,17 @@
     <Compile Include="Migrations\201807290122564_RemoveAccountNumber.Designer.cs">
       <DependentUpon>201807290122564_RemoveAccountNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807292219369_AddPrevBalanceToTransModel.cs" />
+    <Compile Include="Migrations\201807292219369_AddPrevBalanceToTransModel.Designer.cs">
+      <DependentUpon>201807292219369_AddPrevBalanceToTransModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount\BankAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Transaction\Transaction.cs" />
+    <Compile Include="Models\Transaction\TransactionViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -292,6 +297,7 @@
     <Content Include="Views\BankAccount\Details.cshtml" />
     <Content Include="Views\BankAccount\Edit.cshtml" />
     <Content Include="Views\BankAccount\Index.cshtml" />
+    <Content Include="TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807290122564_RemoveAccountNumber.resx">
       <DependentUpon>201807290122564_RemoveAccountNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807292219369_AddPrevBalanceToTransModel.resx">
+      <DependentUpon>201807292219369_AddPrevBalanceToTransModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

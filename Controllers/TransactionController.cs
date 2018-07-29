@@ -57,7 +57,9 @@ namespace WGBLedger.Controllers
             {
                 return HttpNotFound();
             }
-            return View();
+            TransactionCreateViewModel transaction = new TransactionCreateViewModel();
+            transaction.BankAccount_Id = (Guid)acctId;
+            return View(transaction);
         }
 
         // POST: Transaction/Create
@@ -65,20 +67,35 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Amount,Description,TransactionType,TransactionMethod")] Transaction transaction, Guid acctId)
+        public async Task<ActionResult> Create(TransactionCreateViewModel vm)
         {
-            if (ModelState.IsValid)
+            BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
+
+            if (bankAccount == null)
             {
-                transaction.BankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);
-                transaction.Id = Guid.NewGuid();
-                transaction.Date = DateTimeOffset.Now;
-                db.Transactions.Add(transaction);
-                await db.SaveChangesAsync();
-                await HandleTransaction(transaction.Amount, transaction.TransactionType, acctId);
-                return RedirectToAction("Index","Transaction", new { acctId });
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(transaction);
+            if (ModelState.IsValid)
+            {
+                Transaction transaction = new Transaction
+                {
+                    Id = Guid.NewGuid(),
+                    Date = DateTimeOffset.Now,
+                    BankAccount = bankAccount,
+                    PreviousBalance = bankAccount.Balance,
+                    Amount = vm.Amount,
+                    Description = vm.Description,
+                    TransactionMethod = vm.TransactionMethod,
+                    TransactionType = vm.TransactionType,
+                };
+                db.Transactions.Add(transaction);
+                await db.SaveChangesAsync();
+                await HandleTransaction(vm);
+                return RedirectToAction("Index","Transaction", new { acctId = vm.BankAccount_Id });
+            }
+
+            return View(vm.BankAccount_Id);
         }
 
         // GET: Transaction/Edit/5
@@ -101,7 +118,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Edit([Bind(Include = "Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -147,20 +164,11 @@ namespace WGBLedger.Controllers
             base.Dispose(disposing);
         }
 
-        public async Task<ActionResult> HandleTransaction(double amount, TransactionType transactionType, Guid acctId)
+        public async Task<ActionResult> HandleTransaction(TransactionCreateViewModel vm)
         {
-            BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);
-            switch (transactionType.ToString())
-            {
-                case "Withdrawal":
-                    bankAccount.Balance -= amount;
-                    break;
-                case "Deposit":
-                    bankAccount.Balance += amount;
-                    break;
-                default:
-                    break;
-            }
+            BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
+            if (vm.TransactionType.ToString() == "Withdrawal") bankAccount.Balance -= vm.Amount;
+            else bankAccount.Balance += vm.Amount;
             db.Entry(bankAccount).State = EntityState.Modified;
             await db.SaveChangesAsync();
             return null;
