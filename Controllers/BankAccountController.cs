@@ -121,6 +121,8 @@ namespace WGBLedger.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
+            List<Transaction> transactions = await db.Transactions.Where(x => x.BankAccount.Id == id).ToListAsync();
+            db.Transactions.RemoveRange(transactions);
             BankAccount bankAccount = await db.BankAccounts.FindAsync(id);
             db.BankAccounts.Remove(bankAccount);
             await db.SaveChangesAsync();
