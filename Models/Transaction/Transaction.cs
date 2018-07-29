@@ -16,7 +16,9 @@ namespace WGBLedger.Models
         public double Amount { get; set; }
         public string Description { get; set; }
         public DateTimeOffset Date { get; set; }
+        [Display(Name="Transaction Type")]
         public TransactionType TransactionType { get; set; }
+        [Display(Name = "Method")]
         public TransactionMethod TransactionMethod { get; set; }
         public Guid Id { get; set; }
 
