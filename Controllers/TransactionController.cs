@@ -11,7 +11,7 @@ using WGBLedger.Models;
 
 namespace WGBLedger.Controllers
 {
-    public class TransactionController : Controller
+    public class TransactionController : Controller, ITransaction
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -27,7 +27,7 @@ namespace WGBLedger.Controllers
             {
                 return HttpNotFound();
             }
-            return View(await db.Transactions.ToListAsync());
+            return View(acctTransactions);
         }
 
         // GET: Transaction/Details/5
@@ -74,6 +74,7 @@ namespace WGBLedger.Controllers
                 transaction.Date = DateTimeOffset.Now;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
+                await HandleTransaction(transaction.Amount, transaction.TransactionType, acctId);
                 return RedirectToAction("Index","Transaction", new { acctId });
             }
 
@@ -144,6 +145,25 @@ namespace WGBLedger.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public async Task<ActionResult> HandleTransaction(double amount, TransactionType transactionType, Guid acctId)
+        {
+            BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);
+            switch (transactionType.ToString())
+            {
+                case "Withdrawal":
+                    bankAccount.Balance -= amount;
+                    break;
+                case "Deposit":
+                    bankAccount.Balance += amount;
+                    break;
+                default:
+                    break;
+            }
+            db.Entry(bankAccount).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+            return null;
         }
     }
 }
