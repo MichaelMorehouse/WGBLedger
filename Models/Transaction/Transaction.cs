@@ -22,6 +22,7 @@ namespace WGBLedger.Models
         public TransactionMethod TransactionMethod { get; set; }
         public Guid Id { get; set; }
 
+        [Display(Name="Bank Account")]
         public virtual BankAccount BankAccount { get; set; }
     }
 }

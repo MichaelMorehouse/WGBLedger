@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201807282147230_ToApplicationDbContext.Designer.cs">
       <DependentUpon>201807282147230_ToApplicationDbContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807290122564_RemoveAccountNumber.cs" />
+    <Compile Include="Migrations\201807290122564_RemoveAccountNumber.Designer.cs">
+      <DependentUpon>201807290122564_RemoveAccountNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount\BankAccount.cs" />
@@ -310,6 +314,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807282147230_ToApplicationDbContext.resx">
       <DependentUpon>201807282147230_ToApplicationDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807290122564_RemoveAccountNumber.resx">
+      <DependentUpon>201807290122564_RemoveAccountNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

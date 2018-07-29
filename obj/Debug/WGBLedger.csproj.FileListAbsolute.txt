@@ -122,3 +122,4 @@ C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.dll
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.pdb
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.ToApplicationDbContext.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.GenerateResource.cache
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.RemoveAccountNumber.resources
