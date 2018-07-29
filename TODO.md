@@ -9,4 +9,3 @@ Better transaction method options
 Add admin and customer roles with autogeneration on db seed
 Cleanup home views
 TransactionHistoryViewModel
-TransactionCreateViewModel

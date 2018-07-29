@@ -22,12 +22,12 @@ namespace WGBLedger.Controllers
             {
                 return RedirectToAction("Index","Home");//new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List<Transaction> acctTransactions = await db.Transactions.Where(x => x.BankAccount.Id == acctId).ToListAsync();
-            if (acctTransactions == null)
+            var vm = await PopulateTransactionHistoryViewModelAsync((Guid)acctId);
+            if (vm == null)
             {
                 return HttpNotFound();
             }
-            return View(acctTransactions);
+            return View(vm);
         }
 
         // GET: Transaction/Details/5
@@ -89,9 +89,10 @@ namespace WGBLedger.Controllers
                     TransactionMethod = vm.TransactionMethod,
                     TransactionType = vm.TransactionType,
                 };
+                await HandleTransaction(vm);
+                transaction.NewBalance = bankAccount.Balance;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
-                await HandleTransaction(vm);
                 return RedirectToAction("Index","Transaction", new { acctId = vm.BankAccount_Id });
             }
 
@@ -164,14 +165,22 @@ namespace WGBLedger.Controllers
             base.Dispose(disposing);
         }
 
-        public async Task<ActionResult> HandleTransaction(TransactionCreateViewModel vm)
+        public async Task<double> HandleTransaction(TransactionCreateViewModel vm)
         {
             BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
             if (vm.TransactionType.ToString() == "Withdrawal") bankAccount.Balance -= vm.Amount;
             else bankAccount.Balance += vm.Amount;
             db.Entry(bankAccount).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return null;
+            return bankAccount.Balance;
+        }
+
+        public async Task<TransactionHistoryViewModel> PopulateTransactionHistoryViewModelAsync(Guid acctId)
+        {
+            BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);
+            List<Transaction> transactions = await db.Transactions.Where(x => x.BankAccount.Id == acctId).OrderByDescending(x => x.Date).ToListAsync();
+            TransactionHistoryViewModel vm = new TransactionHistoryViewModel { BankAccount = bankAccount, Transactions = transactions };
+            return vm;
         }
     }
 }

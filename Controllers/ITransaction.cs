@@ -7,6 +7,6 @@ namespace WGBLedger.Controllers
 {
     public interface ITransaction
     {
-        Task<ActionResult> HandleTransaction(TransactionCreateViewModel vm);
+        Task<double> HandleTransaction(TransactionCreateViewModel vm);
     }
 }

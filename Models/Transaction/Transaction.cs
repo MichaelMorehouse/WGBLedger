@@ -23,6 +23,9 @@ namespace WGBLedger.Models
         [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
         [DataType(DataType.Currency)]
         public double PreviousBalance { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
+        [DataType(DataType.Currency)]
+        public double NewBalance { get; set; }
         public Guid Id { get; set; }
 
         [Display(Name="Bank Account")]
