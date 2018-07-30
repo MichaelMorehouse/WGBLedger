@@ -148,13 +148,5 @@ namespace WGBLedger.Controllers
             }
             base.Dispose(disposing);
         }
-
-        #region Helper functions
-
-        public static void handleTransaction(Transaction transaction)
-        {
-        }
-
-        #endregion
     }
 }
