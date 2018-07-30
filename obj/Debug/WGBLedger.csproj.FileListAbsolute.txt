@@ -125,3 +125,5 @@ C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.csproj.Gener
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.RemoveAccountNumber.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddPrevBalanceToTransModel.resources
 C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddNewBalanceToTransModel.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.SignedTransactionsChanges.resources
+C:\Users\micmo\source\repos\WGBLedger\WGBLedger\obj\Debug\WGBLedger.Migrations.AddSignedAmountToTransaction.resources

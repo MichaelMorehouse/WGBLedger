@@ -10,3 +10,5 @@ Transaction history sortbys
 
 # Rocks
 Add admin and customer roles with autogeneration on db seed
+Add credit/debit account types
+Sign deposits/withdrawals based on credit/debit acct

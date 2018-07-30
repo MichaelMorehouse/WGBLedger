@@ -20,7 +20,7 @@ namespace WGBLedger.Controllers
         {
             if (acctId == null)
             {
-                return RedirectToAction("Index","Home");//new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");//new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var vm = await PopulateTransactionHistoryViewModelAsync((Guid)acctId);
             if (vm == null)
@@ -59,6 +59,7 @@ namespace WGBLedger.Controllers
             }
             TransactionCreateViewModel transaction = new TransactionCreateViewModel();
             transaction.BankAccount_Id = (Guid)acctId;
+            transaction.AccountType = bankAccount.AccountType;
             return View(transaction);
         }
 
@@ -78,6 +79,8 @@ namespace WGBLedger.Controllers
 
             if (ModelState.IsValid)
             {
+                SignTransactionAmount(vm);
+
                 Transaction transaction = new Transaction
                 {
                     Id = Guid.NewGuid(),
@@ -85,15 +88,14 @@ namespace WGBLedger.Controllers
                     BankAccount = bankAccount,
                     PreviousBalance = bankAccount.Balance,
                     Amount = vm.Amount,
+                    SignedAmount = vm.SignedAmount,
                     Description = vm.Description,
-                    TransactionMethod = vm.TransactionMethod,
                     TransactionType = vm.TransactionType,
                 };
-                await HandleTransaction(vm);
-                transaction.NewBalance = bankAccount.Balance;
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index","Transaction", new { acctId = vm.BankAccount_Id });
+                await HandleTransaction(vm);
+                return RedirectToAction("Index", "Transaction", new { acctId = vm.BankAccount_Id });
             }
 
             return View(vm.BankAccount_Id);
@@ -119,7 +121,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -165,14 +167,31 @@ namespace WGBLedger.Controllers
             base.Dispose(disposing);
         }
 
-        public async Task<double> HandleTransaction(TransactionCreateViewModel vm)
+        #region Helper methods
+
+        public TransactionCreateViewModel SignTransactionAmount(TransactionCreateViewModel vm)
+        {
+            string tType = vm.TransactionType.ToString();
+            string aType = vm.AccountType.ToString();
+            if ((tType == "Withdrawal" && aType == "Debit") ||
+                (tType == "Deposit" && aType == "Credit"))
+            {
+                vm.SignedAmount = vm.Amount * -1;
+            }
+            else
+            {
+                vm.SignedAmount = vm.Amount;
+            }
+            return vm;
+        }
+
+        public async Task<ActionResult> HandleTransaction(TransactionCreateViewModel vm)
         {
             BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
-            if (vm.TransactionType.ToString() == "Withdrawal") bankAccount.Balance -= vm.Amount;
-            else bankAccount.Balance += vm.Amount;
+            bankAccount.Balance += vm.SignedAmount;
             db.Entry(bankAccount).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return bankAccount.Balance;
+            return null;
         }
 
         public async Task<TransactionHistoryViewModel> PopulateTransactionHistoryViewModelAsync(Guid acctId)
@@ -182,5 +201,6 @@ namespace WGBLedger.Controllers
             TransactionHistoryViewModel vm = new TransactionHistoryViewModel { BankAccount = bankAccount, Transactions = transactions };
             return vm;
         }
+        #endregion
     }
 }

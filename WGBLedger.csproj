@@ -220,11 +220,19 @@
     <Compile Include="Migrations\201807292337590_AddNewBalanceToTransModel.Designer.cs">
       <DependentUpon>201807292337590_AddNewBalanceToTransModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807300144091_SignedTransactionsChanges.cs" />
+    <Compile Include="Migrations\201807300144091_SignedTransactionsChanges.Designer.cs">
+      <DependentUpon>201807300144091_SignedTransactionsChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807300450549_AddSignedAmountToTransaction.cs" />
+    <Compile Include="Migrations\201807300450549_AddSignedAmountToTransaction.Designer.cs">
+      <DependentUpon>201807300450549_AddSignedAmountToTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\UserAccount\AccountViewModels.cs" />
     <Compile Include="Models\BankAccount\BankAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserAccount\ManageViewModels.cs" />
     <Compile Include="Models\Transaction\Transaction.cs" />
     <Compile Include="Models\Transaction\TransactionViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -306,7 +314,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\BankAccount\BankAccountViewModels\" />
-    <Folder Include="Models\Transaction\TransactionViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -333,6 +340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807292337590_AddNewBalanceToTransModel.resx">
       <DependentUpon>201807292337590_AddNewBalanceToTransModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807300144091_SignedTransactionsChanges.resx">
+      <DependentUpon>201807300144091_SignedTransactionsChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807300450549_AddSignedAmountToTransaction.resx">
+      <DependentUpon>201807300450549_AddSignedAmountToTransaction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

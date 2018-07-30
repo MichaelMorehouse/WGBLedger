@@ -15,10 +15,11 @@ namespace WGBLedger.Models
     public class TransactionCreateViewModel
     {
         public double Amount { get; set; }
+        public double SignedAmount { get; set; }
         public string Description { get; set; }
         public TransactionType TransactionType { get; set; }
-        public TransactionMethod TransactionMethod { get; set; }
         [Display(Name="Bank Account")]
         public Guid BankAccount_Id { get; set; }
+        public AccountType AccountType { get; set; }
     }
 }
