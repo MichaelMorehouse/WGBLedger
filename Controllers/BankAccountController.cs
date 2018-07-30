@@ -20,6 +20,10 @@ namespace WGBLedger.Controllers
         public async Task<ActionResult> Index()
         {
             string userId = HttpContext.User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return View("Home");
+            }
             return View(await db.BankAccounts.Where(x => x.User.Id == userId).ToListAsync());
         }
 
