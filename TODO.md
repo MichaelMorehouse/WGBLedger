@@ -1,11 +1,12 @@
-﻿# Fine
-Better redirect after creating transaction
+﻿# Sand
 Transaction edit for admins only
-Test account renaming
-Better transaction method options
+Remove transaction method options - underimplemented
+Add message to Home Index to login/create account if not logged in
 
+# Pebbles
+Cleanup Home views
+AdminDashboard Views
+Transaction history sortbys
 
-# Coarse
+# Rocks
 Add admin and customer roles with autogeneration on db seed
-Cleanup home views
-TransactionHistoryViewModel

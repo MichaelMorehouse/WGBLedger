@@ -61,7 +61,6 @@ namespace WGBLedger.Controllers
                 bankAccount.User = await db.Users.SingleOrDefaultAsync(x => x.Id.ToString() == userId);
                 bankAccount.Id = Guid.NewGuid();
                 bankAccount.DateCreated = DateTimeOffset.Now;
-                // TODO bankAccount.AccountNumber = GenerateAccountNumber();
                 db.BankAccounts.Add(bankAccount);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -90,7 +89,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Name", Exclude = "DateCreated")] BankAccount bankAccount)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] BankAccount bankAccount)
         {
             if (ModelState.IsValid)
             {

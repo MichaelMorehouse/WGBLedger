@@ -119,7 +119,7 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType,TransactionMethod")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
