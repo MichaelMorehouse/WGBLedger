@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Accounts</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Account", "Create")
 </p>
 <table class="table">
     <tr>
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.AccountType)
         </td>
         <td>
-            @Html.ActionLink("Make Transaction", "Create", "Transaction", new { acctId = item.Id },"") | 
+            @Html.ActionLink("New Transaction", "Create", "Transaction", new { acctId = item.Id },"") | 
             @Html.ActionLink("History", "Index", "Transaction", new { acctId = item.Id },"") | 
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
