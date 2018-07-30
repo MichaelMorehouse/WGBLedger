@@ -22,4 +22,13 @@ namespace WGBLedger.Models
         public Guid BankAccount_Id { get; set; }
         public AccountType AccountType { get; set; }
     }
+
+    public class TransactionEditViewModel
+    {
+        public Guid Id { get; set; }
+        public DateTimeOffset Date { get; set; }
+        public string Description { get; set; }
+        public double Amount { get; set; }
+        public TransactionType TransactionType { get; set; }
+    }
 }

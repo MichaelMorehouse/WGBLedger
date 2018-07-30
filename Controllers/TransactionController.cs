@@ -20,7 +20,7 @@ namespace WGBLedger.Controllers
         {
             if (acctId == null)
             {
-                return RedirectToAction("Index", "Home");//new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             var vm = await PopulateTransactionHistoryViewModelAsync((Guid)acctId);
             if (vm == null)
@@ -94,7 +94,7 @@ namespace WGBLedger.Controllers
                 };
                 db.Transactions.Add(transaction);
                 await db.SaveChangesAsync();
-                await HandleTransaction(vm);
+                await HandleTransactionAsync(vm);
                 return RedirectToAction("Index", "Transaction", new { acctId = vm.BankAccount_Id });
             }
 
@@ -113,7 +113,17 @@ namespace WGBLedger.Controllers
             {
                 return HttpNotFound();
             }
-            return View(transaction);
+
+            TransactionEditViewModel vm = new TransactionEditViewModel
+            {
+                Id = transaction.Id,
+                Description = transaction.Description,
+                Amount = transaction.Amount,
+                Date = transaction.Date,
+                TransactionType = transaction.TransactionType
+            };
+
+            return View(vm);
         }
 
         // POST: Transaction/Edit/5
@@ -121,15 +131,17 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,Description,Date,TransactionType")] Transaction transaction)
+        public async Task<ActionResult> Edit(TransactionEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
+                Transaction transaction = await db.Transactions.FindAsync(vm.Id);
+                transaction.Description = vm.Description;
                 db.Entry(transaction).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { acctId = transaction.BankAccount.Id });
             }
-            return View(transaction);
+            return View(vm);
         }
 
         // GET: Transaction/Delete/5
@@ -185,7 +197,7 @@ namespace WGBLedger.Controllers
             return vm;
         }
 
-        public async Task<ActionResult> HandleTransaction(TransactionCreateViewModel vm)
+        public async Task<ActionResult> HandleTransactionAsync(TransactionCreateViewModel vm)
         {
             BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
             bankAccount.Balance += vm.SignedAmount;

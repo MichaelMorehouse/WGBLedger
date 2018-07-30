@@ -1,4 +1,4 @@
-﻿@model WGBLedger.Models.BankAccount
+﻿@model WGBLedger.Models.BankAccountEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,7 +15,6 @@
     <h4>Bank Account</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,19 +34,12 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateCreated)
-            </dd>
-
-            <dt>
                 @Html.DisplayNameFor(model => model.AccountType)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.AccountType)
+                @Html.HiddenFor(model => model.AccountType)
             </dd>
 
         </dl>

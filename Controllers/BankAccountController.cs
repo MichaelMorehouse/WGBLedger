@@ -56,8 +56,6 @@ namespace WGBLedger.Controllers
         public async Task<ActionResult> Create([Bind(Include = "Name,AccountType")] BankAccount bankAccount)
         {
             string userId = HttpContext.User.Identity.GetUserId();
-            // TODO Add verification message
-            // Prevent account creation with no logon
             if (userId == null) return View();
 
             if (ModelState.IsValid)
@@ -85,7 +83,15 @@ namespace WGBLedger.Controllers
             {
                 return HttpNotFound();
             }
-            return View(bankAccount);
+
+            BankAccountEditViewModel vm = new BankAccountEditViewModel
+            {
+                Id = bankAccount.Id,
+                Name = bankAccount.Name,
+                AccountType = bankAccount.AccountType
+            };
+
+            return View(vm);
         }
 
         // POST: BankAccount/Edit/5
@@ -93,15 +99,17 @@ namespace WGBLedger.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name")] BankAccount bankAccount)
+        public async Task<ActionResult> Edit(BankAccountEditViewModel vm)
         {
             if (ModelState.IsValid)
             {
+                BankAccount bankAccount = await db.BankAccounts.FindAsync(vm.Id);
+                bankAccount.Name = vm.Name;
                 db.Entry(bankAccount).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(bankAccount);
+            return View(vm);
         }
 
         // GET: BankAccount/Delete/5
