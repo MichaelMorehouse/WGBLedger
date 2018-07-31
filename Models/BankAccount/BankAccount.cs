@@ -23,7 +23,6 @@ namespace WGBLedger.Models
         [Display(Name="Type")]
         public AccountType AccountType { get; set; }
 
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
         [DataType(DataType.Currency)]
         public double Balance { get; set; }
 
