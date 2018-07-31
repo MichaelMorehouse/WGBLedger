@@ -11,7 +11,7 @@ using WGBLedger.Models;
 
 namespace WGBLedger.Controllers
 {
-    public class TransactionController : Controller, ITransaction
+    public class TransactionController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -20,7 +20,7 @@ namespace WGBLedger.Controllers
         {
             if (acctId == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "BankAccount");
             }
             var vm = await PopulateTransactionHistoryViewModelAsync((Guid)acctId);
             if (vm == null)
