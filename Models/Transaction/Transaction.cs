@@ -12,7 +12,6 @@ namespace WGBLedger.Models
     {
         public Guid Id { get; set; }
 
-        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
         public DateTimeOffset Date { get; set; }
 
         [MaxLength(500)]

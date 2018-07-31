@@ -29,7 +29,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateCreated)
+            @Model.DateCreated.ToLocalTime().ToString(@"dd/MM/yyyy hh:mm tt")
         </dd>
 
         <dt>

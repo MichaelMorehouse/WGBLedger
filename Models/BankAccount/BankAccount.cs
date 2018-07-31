@@ -18,7 +18,7 @@ namespace WGBLedger.Models
         public string Name { get; set; }
 
         [Display(Name="Account Created")]
-        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
+        [DataType(DataType.DateTime)]
         public DateTimeOffset DateCreated { get; set; }
 
         [Display(Name="Type")]

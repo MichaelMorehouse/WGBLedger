@@ -35,7 +35,7 @@
 @foreach (var item in Model.Transactions) {
     <tr>
         <td>
-            @item.Date.ToString(@"dd/MM/yyyy")
+            @item.Date.ToLocalTime().ToString(@"dd/MM/yyyy")
         </td>
 
         <td>

@@ -29,7 +29,6 @@ namespace WGBLedger.Models
     {
         [Display(Name ="Transaction Id")]
         public Guid Id { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
         public DateTimeOffset Date { get; set; }
         public string Description { get; set; }
 

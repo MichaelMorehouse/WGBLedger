@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Date)
+            @Model.Date.ToLocalTime().ToString(@"dd/MM/yyyy hh:mm tt")
         </dd>
 
         <dt>
