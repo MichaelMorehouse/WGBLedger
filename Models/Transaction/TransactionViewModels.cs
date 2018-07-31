@@ -30,5 +30,7 @@ namespace WGBLedger.Models
         public string Description { get; set; }
         public double Amount { get; set; }
         public TransactionType TransactionType { get; set; }
+        [Display(Name = "Bank Account")]
+        public Guid BankAccount_Id { get; set; }
     }
 }
