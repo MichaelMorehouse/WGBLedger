@@ -318,6 +318,15 @@
     <Content Include="Views\BankAccount\Index.cshtml" />
     <Content Include="TODO.md" />
     <Content Include="Views\BankAccount\Home.cshtml" />
+    <None Include="Web.config.template">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.config.Debug.template">
+      <DependentUpon>Web.config.template</DependentUpon>
+    </None>
+    <None Include="Web.config.Release.template">
+      <DependentUpon>Web.config.template</DependentUpon>
+    </None>
     <None Include="web.private.config">
       <SubType>Designer</SubType>
     </None>
