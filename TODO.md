@@ -1,14 +1,8 @@
 ﻿# Sand
-In transaction create view add banking acct type and name info
-display pw reqs
-login and register buttons
-Link to acct overview from transaction history
+Update readme
 
 # Pebbles
-Prettier home page
 Transaction history sortbys
-Replace text action links with buttons
-Date overwrite bug?
+Date overwrite/timezone display bug?
 
 # Rocks
-Account dashboard partial for transaction history page
