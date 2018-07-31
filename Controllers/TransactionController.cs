@@ -181,6 +181,11 @@ namespace WGBLedger.Controllers
 
         #region Helper methods
 
+        /// <summary>
+        /// Assigns appropriate sign to transaction amount based on transaction and bank account type
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
         public TransactionCreateViewModel SignTransactionAmount(TransactionCreateViewModel vm)
         {
             string tType = vm.TransactionType.ToString();
@@ -197,6 +202,11 @@ namespace WGBLedger.Controllers
             return vm;
         }
 
+        /// <summary>
+        /// Updates bank balanced based on new transactions signed amount
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
         public async Task<ActionResult> HandleTransactionAsync(TransactionCreateViewModel vm)
         {
             BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == vm.BankAccount_Id);
@@ -206,6 +216,11 @@ namespace WGBLedger.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Gets all transactions related to the passed Id's associated bank account, desc order
+        /// </summary>
+        /// <param name="acctId"></param>
+        /// <returns></returns>
         public async Task<TransactionHistoryViewModel> PopulateTransactionHistoryViewModelAsync(Guid acctId)
         {
             BankAccount bankAccount = await db.BankAccounts.FirstOrDefaultAsync(x => x.Id == acctId);

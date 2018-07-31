@@ -11,12 +11,14 @@ namespace WGBLedger.Models
     public class Transaction
     {
         public Guid Id { get; set; }
+
+        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
         public DateTimeOffset Date { get; set; }
 
         [MaxLength(500)]
         public string Description { get; set; }
 
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
+        [RegularExpression(@"^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(\.[0-9][0-9])?$", ErrorMessage = "Invalid amount, please enter positive dollar amount")]
         [DataType(DataType.Currency)]
         public double Amount { get; set; }
 
@@ -27,7 +29,6 @@ namespace WGBLedger.Models
         [Display(Name = "Transaction Type")]
         public TransactionType TransactionType { get; set; }
 
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid Amount")]
         [DataType(DataType.Currency)]
         public double PreviousBalance { get; set; }
         

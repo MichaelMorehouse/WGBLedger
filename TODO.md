@@ -3,6 +3,6 @@ Update readme
 
 # Pebbles
 Transaction history sortbys
-Date overwrite/timezone display bug?
 
 # Rocks
+Transfers between accounts

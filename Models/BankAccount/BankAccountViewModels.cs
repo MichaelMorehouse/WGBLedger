@@ -13,8 +13,11 @@ namespace WGBLedger.Models
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
         [Display(Name="Account Created")]
+        [DataType(DataType.DateTime), DisplayFormat(DataFormatString ="{0:dd/MM/yyyy hh:mm tt}")]
         public DateTimeOffset DateCreated { get; set; } 
+
         [Display(Name="Account Type")]
         public AccountType AccountType { get; set; }
     }
