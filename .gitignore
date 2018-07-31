@@ -1,2 +1,6 @@
 ﻿# Application Directories
 App_Data/
+bin
+obj
+packages
+Properties/PublishProfiles
