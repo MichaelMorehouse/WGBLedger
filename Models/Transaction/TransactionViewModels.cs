@@ -29,7 +29,7 @@ namespace WGBLedger.Models
     {
         [Display(Name ="Transaction Id")]
         public Guid Id { get; set; }
-        [DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}")]
         public DateTimeOffset Date { get; set; }
         public string Description { get; set; }
 
