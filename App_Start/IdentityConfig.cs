@@ -57,7 +57,7 @@ namespace WGBLedger
                 RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = false,
+                RequireUppercase = true,
             };
 
             // Configure user lockout defaults

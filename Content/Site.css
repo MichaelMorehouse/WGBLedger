@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.home-textarea {
+    margin: 20px;
+}

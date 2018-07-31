@@ -50,7 +50,7 @@ namespace WGBLedger.Controllers
         {
             if (acctId == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index","BankAccount");
             }
             BankAccount bankAccount = await db.BankAccounts.FindAsync(acctId);
             if (bankAccount == null)
@@ -60,6 +60,7 @@ namespace WGBLedger.Controllers
             TransactionCreateViewModel transaction = new TransactionCreateViewModel();
             transaction.BankAccount_Id = (Guid)acctId;
             transaction.AccountType = bankAccount.AccountType;
+            ViewBag.Name = bankAccount.Name;
             return View(transaction);
         }
 

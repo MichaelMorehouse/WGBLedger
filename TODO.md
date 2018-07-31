@@ -1,7 +1,7 @@
 ﻿# Sand
 In transaction create view add banking acct type and name info
 display pw reqs
-login and register
+login and register buttons
 Link to acct overview from transaction history
 
 # Pebbles

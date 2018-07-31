@@ -17,6 +17,7 @@ namespace WGBLedger.Models
         public double Amount { get; set; }
         public double SignedAmount { get; set; }
         public string Description { get; set; }
+        [Display(Name ="Transaction Type")]
         public TransactionType TransactionType { get; set; }
         [Display(Name="Bank Account")]
         public Guid BankAccount_Id { get; set; }
@@ -29,6 +30,7 @@ namespace WGBLedger.Models
         public DateTimeOffset Date { get; set; }
         public string Description { get; set; }
         public double Amount { get; set; }
+        [Display(Name = "Transaction Type")]
         public TransactionType TransactionType { get; set; }
         [Display(Name = "Bank Account")]
         public Guid BankAccount_Id { get; set; }
