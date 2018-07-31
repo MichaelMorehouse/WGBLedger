@@ -1,14 +1,13 @@
 ﻿# Sand
-Transaction edit for admins only
-Add message to Home Index to login/create account if not logged in
-Fix transaction edit redirect error
 Fix back to list redirects
+Fix new account registration redirect error
+In transaction create view add banking acct type and name info
 
 # Pebbles
-Cleanup Home views
-AdminDashboard Views
+Prettier home page
 Transaction history sortbys
+Replace text action links with buttons
 
 # Rocks
-Add admin and customer roles with autogeneration on db seed
 (?)Transfer between accounts
+Account dashboard partial for transaction history page
