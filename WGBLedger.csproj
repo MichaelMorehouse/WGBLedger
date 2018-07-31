@@ -266,7 +266,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <None Include=".gitignore" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -309,6 +311,9 @@
     <Content Include="Views\BankAccount\Index.cshtml" />
     <Content Include="TODO.md" />
     <Content Include="Views\BankAccount\Home.cshtml" />
+    <None Include="web.private.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
