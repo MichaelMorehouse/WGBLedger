@@ -56,7 +56,10 @@ namespace WGBLedger.Controllers
         public async Task<ActionResult> Create([Bind(Include = "Name,AccountType")] BankAccount bankAccount)
         {
             string userId = HttpContext.User.Identity.GetUserId();
-            if (userId == null) return View();
+            if (userId == null)
+            {
+                return View();
+            }
 
             if (ModelState.IsValid)
             {
@@ -88,7 +91,8 @@ namespace WGBLedger.Controllers
             {
                 Id = bankAccount.Id,
                 Name = bankAccount.Name,
-                AccountType = bankAccount.AccountType
+                AccountType = bankAccount.AccountType,
+                DateCreated = bankAccount.DateCreated
             };
 
             return View(vm);
