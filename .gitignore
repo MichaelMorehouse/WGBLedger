@@ -4,6 +4,7 @@ bin/
 obj/
 packages/
 Properties/PublishProfiles
+Scripts/*
 
 # Configuration Values
 *.private.config
